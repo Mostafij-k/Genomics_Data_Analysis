@@ -1,7 +1,14 @@
-# dplyr packages install
+    # Statistical Interference
+
+# install 
 install.packages("dplyr")
 library(dplyr)
-data<-read.csv("mice_pheno.csv")
-View(data)
-controls<-filter(data,Diet=='chow')
-select(controls, Bodyweight)
+# Read Data
+data<-read.csv("femaleMiceWeights.csv")  
+controls<-filter(data,Diet=="chow") %>%
+          select(Bodyweight) %>% unlist
+
+treatment<-filter(data,Diet=="hf") %>%
+  select(Bodyweight) %>% unlist
+mean(controls)
+mean(treatment)
